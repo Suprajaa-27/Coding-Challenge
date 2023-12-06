@@ -30,7 +30,6 @@ variable "filename" {
 }
 
 variable "trigger_events" {
-  type = string
   description = "List of S3 trigger events."
   default     = ["s3:ObjectCreated:*"]
 }
