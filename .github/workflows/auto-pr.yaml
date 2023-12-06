@@ -11,6 +11,9 @@ on:
       - feat/**
       - chore/**
 
+permissions:
+  id-token: write
+  contents: read
 jobs:
   create-draft-pr:
     runs-on: ubuntu-latest
