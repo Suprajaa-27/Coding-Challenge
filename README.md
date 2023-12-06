@@ -1,4 +1,4 @@
-# Coding-Challenge
+README.md
 Description:
 This repo is to trigger Lambda function whenever a json file is uploaded on S3 bucket.
 It takes numbers as a key and sum its values.
