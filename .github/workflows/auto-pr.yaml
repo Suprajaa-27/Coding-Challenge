@@ -26,5 +26,5 @@ jobs:
           title: "Draft PR for ${{ github.ref }}"
           body: "This is an automated draft PR."
           draft: true
-          branch: "main"
+          branch: ${{ github.ref_name }}
           base: "main"
