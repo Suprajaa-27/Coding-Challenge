@@ -1,4 +1,4 @@
-# modules/lambda_s3_trigger/main.tf
+# Resource to create a lambda function
 
 resource "aws_lambda_function" "s3_trigger_lambda" {
   function_name = var.lambda_function_name
@@ -8,6 +8,7 @@ resource "aws_lambda_function" "s3_trigger_lambda" {
   filename      = var.filename
 }
 
+#Resource to configure Lambda as an event trigger for S3 bucket.
 resource "aws_s3_bucket_notification" "s3_event_trigger" {
   bucket = aws_s3_bucket.s3_bucket.id
 
@@ -19,7 +20,7 @@ resource "aws_s3_bucket_notification" "s3_event_trigger" {
   }
 }
 
-# creating zip file
+# To Package lambda function code
 data "archive_file" "zip_python_code"{
     type = "zip"
     source_dir = "${path.module}/../../src"

@@ -36,3 +36,7 @@ variable "trigger_events" {
   default     = ["s3:ObjectCreated:*"]
 }
 
+variable "filename" {
+  description = "The path to the Lambda function deployment package (ZIP file)."
+  default = "${path.module}/lambda_function.zip"
+}

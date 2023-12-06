@@ -1,4 +1,4 @@
-# modules/lambda_s3_trigger/variables.tf
+
 
 variable "region" {
   type = string
@@ -24,6 +24,7 @@ variable "role_arn" {
 
 variable "filename" {
   description = "The path to the Lambda function deployment package (ZIP file)."
+  default = "${path.module}/lambda_function.zip"
 }
 
 variable "trigger_events" {
