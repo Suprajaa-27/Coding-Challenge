@@ -26,7 +26,6 @@ variable "role_arn" {
 variable "filename" {
   type = string
   description = "The path to the Lambda function deployment package (ZIP file)."
-  default = var.filename
 }
 
 variable "trigger_events" {

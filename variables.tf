@@ -44,5 +44,4 @@ variable "trigger_events" {
 variable "filename" {
   type= string
   description = "The path to the Lambda function deployment package (ZIP file)."
-  default = "${path.module}/lambda_function.zip"
 }
