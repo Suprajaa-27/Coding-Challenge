@@ -14,29 +14,35 @@ variable "function_name" {
 }
 
 variable "handler" {
+  type = string
   description = "The Lambda function handler."
 }
 
 variable "runtime" {
+  type = string
   description = "The Lambda function runtime."
 }
 
 variable "filter_prefix" {
+  type = string
   description = "Prefix filter for S3 events."
   default     = ""
 }
 
 variable "filter_suffix" {
+  type = string
   description = "Suffix filter for S3 events."
   default     = ".json"
 }
 
 variable "trigger_events" {
+  type = string
   description = "List of S3 trigger events."
   default     = ["s3:ObjectCreated:*"]
 }
 
 variable "filename" {
+  type= string
   description = "The path to the Lambda function deployment package (ZIP file)."
   default = "${path.module}/lambda_function.zip"
 }

@@ -21,8 +21,8 @@ resource "aws_s3_bucket_notification" "s3_event_trigger" {
 }
 
 # To Package lambda function code
-data "archive_file" "zip_python_code"{
-    type = "zip"
-    source_dir = "${path.module}/../../src"
-    output_path = "${path.module}/../../lambda_function.zip"
+data "archive_file" "zip_python_code" {
+  type        = "zip"
+  source_dir  = "${path.module}/../../src"
+  output_path = "${path.module}/../../lambda_function.zip"
 }
