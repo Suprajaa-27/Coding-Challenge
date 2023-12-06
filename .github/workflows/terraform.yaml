@@ -20,7 +20,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    # OIDC Con
+    # OIDC Config
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v3
       with:
@@ -37,7 +37,7 @@ jobs:
       run: terraform fmt
 
     - name: Terraform Plan
-      run: terraform plan 
+      run: terraform plan
 
     - name: Terraform Apply
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
