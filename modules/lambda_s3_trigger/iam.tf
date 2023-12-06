@@ -16,11 +16,12 @@ resource "aws_iam_role" "aws_lambda_role" {
   })
 }
 
-resource "aws_iam_policy" "iam_policy_for_lambda" {
+# IAM Policy for cloud watch logs
+resource "aws_iam_policy" "cloud_watch_iam_policy" {
 
-  name         = "aws_iam_policy_for_aws_lambda_role"
+  name         = "aws_iam_policy_for_cloud_watch"
   path         = "/"
-  description  = "AWS IAM Policy for managing aws lambda role"
+  description  = "AWS IAM Policy for cloud watch"
   policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -39,14 +40,15 @@ resource "aws_iam_policy" "iam_policy_for_lambda" {
 EOF
 }
 
-# Policy Attachment on the role.
+# Policy Attachment to the role.
 
-resource "aws_iam_role_policy_attachment" "attach_iam_policy_to_iam_role" {
+resource "aws_iam_role_policy_attachment" "attach_cloud_watch_policy_to_lambda_role" {
   role        = aws_iam_role.aws_lambda_role.name
-  policy_arn  = aws_iam_policy.iam_policy_for_lambda.arn
+  policy_arn  = aws_iam_policy.cloud_watch_iam_policy.arn
 }
 
-resource "aws_iam_policy" "s3_policy" {
+# Policy that allow lambda to access s3.
+resource "aws_iam_policy" "s3_access_policy" {
   name        = "s3_access_policy"
   description = "Policy for Lambda function to access S3"
   
@@ -72,12 +74,13 @@ resource "aws_iam_policy" "s3_policy" {
 EOF
 }
 
-
+# S3 Policy attachment to Lambda role.
 resource "aws_iam_role_policy_attachment" "lambda_s3_policy_attachment" {
-  policy_arn = aws_iam_policy.s3_policy.arn
   role       = aws_iam_role.aws_lambda_role.name
+  policy_arn = aws_iam_policy.s3_access_policy.arn
 }
 
+# AWS Lambda permission to allow S3 to invoke it.
 resource "aws_lambda_permission" "s3_trigger_permission" {
   statement_id  = "AllowExecutionFromS3Bucket"
   action        = "lambda:InvokeFunction"
