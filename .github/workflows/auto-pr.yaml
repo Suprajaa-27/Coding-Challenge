@@ -1,0 +1,30 @@
+name: Automatic Draft Pull Request
+
+on:
+  push:
+    branches:
+      - feature/**
+      - bugfix/**
+      - release/**
+      - rfc/**
+      - fix/**
+      - feat/**
+      - chore/**
+
+jobs:
+  create-draft-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create Draft Pull Request
+        uses: peter-evans/create-pull-request@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: merge changes from ${{ github.ref }}"
+          title: "Draft PR for ${{ github.ref }}"
+          body: "This is an automated draft PR."
+          draft: true
+          branch: "main"
+          base: "main"
