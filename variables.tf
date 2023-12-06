@@ -39,9 +39,3 @@ variable "trigger_events" {
   description = "List of S3 trigger events."
   default     = ["s3:ObjectCreated:*"]
 }
-
-
-variable "filename" {
-  type= string
-  description = "The path to the Lambda function deployment package (ZIP file)."
-}
