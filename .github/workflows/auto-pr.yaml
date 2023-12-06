@@ -21,13 +21,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create Draft Pull Request
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "chore: merge changes from ${{ github.ref }}"
-          title: "Draft PR for ${{ github.ref }}"
-          body: "This is an automated draft PR."
-          draft: true
-          branch: ${{ github.ref_name }}
-          base: "main"
+      - name: Create or update pull request
+        id: create-pr
+        uses: vsoch/pull-request-action@1.0.24
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PASS_ON_ERROR: true
+          PULL_REQUEST_UPDATE: true
+          PULL_REQUEST_DRAFT: true
+          PULL_REQUEST_BRANCH: main
+          PULL_REQUEST_TITLE: Merge ${{ github.ref_name }} into main
