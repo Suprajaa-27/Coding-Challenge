@@ -54,3 +54,16 @@ variable "s3_bucket_id" {
   type = string
   description = "S3 bucket id to trigger lambda function when a json file is created"
 }
+
+variable "lambda_source_dir" {
+  description = "Source directory for Lambda function code"
+  type        = string
+  default = "../../src"
+
+}
+
+variable "lambda_output_path" {
+  description = "Output path for the Lambda function zip file"
+  type        = string
+  default = "../../lambda_function.zip"
+}
