@@ -1,5 +1,4 @@
 # Creating s3 bucket
-
 resource "aws_s3_bucket" "s3_bucket" {
   bucket_prefix = var.bucket_name
 }
@@ -43,4 +42,6 @@ resource "aws_s3_bucket_object_lock_configuration" "object-lock" {
       days = 5
     }
   }
+
+  depends_on = [aws_s3_bucket_versioning.object-versioning]
 }
