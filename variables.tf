@@ -1,36 +1,36 @@
-variable bucket_name {
-    type = string
-    description = "Bucket where files are uploaded to trigger lambda function"
+variable "bucket_name" {
+  type        = string
+  description = "Bucket where files are uploaded to trigger lambda function"
 }
 
-variable region {
-    type = string
-    description = "Region in which terraform will be deployed"
+variable "region" {
+  type        = string
+  description = "Region in which terraform will be deployed"
 }
 
 variable "function_name" {
-  type = string
+  type        = string
   description = "The name of the Lambda Function."
 }
 
 variable "handler" {
-  type = string
+  type        = string
   description = "The Lambda function handler."
 }
 
 variable "runtime" {
-  type = string
+  type        = string
   description = "The Lambda function runtime."
 }
 
 variable "filter_prefix" {
-  type = string
+  type        = string
   description = "Prefix filter for S3 events."
   default     = ""
 }
 
 variable "filter_suffix" {
-  type = string
+  type        = string
   description = "Suffix filter for S3 events."
   default     = ".json"
 }

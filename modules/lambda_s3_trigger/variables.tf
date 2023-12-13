@@ -1,25 +1,25 @@
 variable "region" {
-  type = string
+  type        = string
   description = "Region in which lambda function and bcuket will be created."
 }
 
 variable "lambda_function_name" {
-  type = string
+  type        = string
   description = "The name of the Lambda Function."
 }
 
 variable "handler" {
-  type = string
+  type        = string
   description = "The Lambda function handler."
 }
 
 variable "runtime" {
-  type = string
+  type        = string
   description = "The Lambda function runtime."
 }
 
 variable "role_arn" {
-  type = string
+  type        = string
   description = "The ARN of the IAM role for the Lambda function."
 }
 
@@ -33,37 +33,37 @@ variable "trigger_events" {
 }
 
 variable "filter_prefix" {
-  type = string
+  type        = string
   description = "Prefix filter for S3 events."
   default     = ""
 }
 
 variable "filter_suffix" {
-  type = string
+  type        = string
   description = "Suffix filter for S3 events."
   default     = ".json"
 }
 
 variable "bucket_name" {
-  type = string
+  type        = string
   description = "S3 bucket to trigger lambda function when a json file is created"
-   
+
 }
 
 variable "s3_bucket_id" {
-  type = string
+  type        = string
   description = "S3 bucket id to trigger lambda function when a json file is created"
 }
 
 variable "lambda_source_dir" {
   description = "Source directory for Lambda function code"
   type        = string
-  default = "../../src"
+  default     = "../../src"
 
 }
 
 variable "lambda_output_path" {
   description = "Output path for the Lambda function zip file"
   type        = string
-  default = "../../lambda_function.zip"
+  default     = "../../lambda_function.zip"
 }

@@ -1,4 +1,4 @@
-# Provider configuration
-provider "aws" {
-  region = var.region
-}
+# # Provider configuration
+# provider "aws" {
+#   region = var.region
+# }
