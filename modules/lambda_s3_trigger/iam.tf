@@ -16,6 +16,7 @@ resource "aws_iam_role" "aws_lambda_role" {
   })
 }
 
+# REVIEW: Scope the access down to a specific log group used by Lambda. 
 # IAM Policy for cloud watch logs
 resource "aws_iam_policy" "cloud_watch_iam_policy" {
 
@@ -47,6 +48,7 @@ resource "aws_iam_role_policy_attachment" "attach_cloud_watch_policy_to_lambda_r
   policy_arn = aws_iam_policy.cloud_watch_iam_policy.arn
 }
 
+# REVIEW: Remove "s3:PutObject" as it is not necessary for Lambda in this assignment. 
 # Policy that allow lambda to access s3.
 resource "aws_iam_policy" "s3_access_policy" {
   name        = "s3_access_policy"
