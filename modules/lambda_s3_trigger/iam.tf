@@ -33,7 +33,7 @@ resource "aws_iam_policy" "cloud_watch_iam_policy" {
         "logs:CreateLogStream",
         "logs:PutLogEvents"
       ],
-      "Resource": "arn:aws:logs:*:*:*",
+      "Resource": "arn:aws:logs:eu-north-1:388921471165:aws_cloudwatch_log_group/app_log_group:*",
       "Effect": "Allow"
     }
   ]

@@ -1,6 +1,8 @@
 # Creating s3 bucket
 resource "aws_s3_bucket" "s3_bucket" {
-  bucket_prefix = var.bucket_name
+
+  bucket = var.bucket_name
+
 }
 resource "aws_s3_bucket_lifecycle_configuration" "bucket-config" {
 

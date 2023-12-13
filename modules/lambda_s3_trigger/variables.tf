@@ -47,7 +47,6 @@ variable "filter_suffix" {
 variable "bucket_name" {
   type        = string
   description = "S3 bucket to trigger lambda function when a json file is created"
-
 }
 
 variable "s3_bucket_id" {
@@ -59,7 +58,6 @@ variable "lambda_source_dir" {
   description = "Source directory for Lambda function code"
   type        = string
   default     = "../../src"
-
 }
 
 variable "lambda_output_path" {
@@ -67,3 +65,4 @@ variable "lambda_output_path" {
   type        = string
   default     = "../../lambda_function.zip"
 }
+
