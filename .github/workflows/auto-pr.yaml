@@ -23,7 +23,7 @@ jobs:
 
       - name: Create or update pull request
         id: create-pr
-        uses: vsoch/pull-request-action@1.0.24
+        uses: vsoch/pull-request-action@1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.OWNER_TOKEN }}
           PASS_ON_ERROR: true
