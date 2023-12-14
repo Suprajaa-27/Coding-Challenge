@@ -5,7 +5,7 @@ resource "aws_lambda_function" "s3_trigger_lambda" {
   handler       = var.handler
   runtime       = var.runtime
   role          = aws_iam_role.aws_lambda_role.arn
-  filename      = var.filename
+  filename      = "${path.module}/${var.filename}"
 }
 
 #Resource to configure Lambda as an event trigger for S3 bucket.
