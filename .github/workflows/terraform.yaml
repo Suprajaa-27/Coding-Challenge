@@ -27,13 +27,14 @@ jobs:
         role-to-assume: arn:aws:iam::388921471165:role/github-to-aws-oidc
         aws-region: eu-north-1
 
-    - name: Set working directory to 'terraform'
-      run: cd terraform
+    # - name: Set working directory to 'terraform'
+    #   run: cd terraform
 
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
     - name: Terraform Init
+      working-directory: ../../terraform
       run: terraform init
 
     - name: Terraform Format
