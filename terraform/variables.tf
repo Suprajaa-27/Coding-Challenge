@@ -1,26 +1,25 @@
 variable "region" {
   type        = string
   description = "Region in which lambda function and bcuket will be created."
+  default     = "eu-north-1"
 }
 
 variable "lambda_function_name" {
   type        = string
   description = "The name of the Lambda Function."
+  default     = "s3-trigger-lambda-function"
 }
 
 variable "handler" {
   type        = string
   description = "The Lambda function handler."
+  default     = "lambda_function.lambda_handler"
 }
 
 variable "runtime" {
   type        = string
   description = "The Lambda function runtime."
-}
-
-variable "role_arn" {
-  type        = string
-  description = "The ARN of the IAM role for the Lambda function."
+  default     = "python3.11"
 }
 
 variable "filename" {
@@ -48,23 +47,18 @@ variable "filter_suffix" {
 variable "bucket_name" {
   type        = string
   description = "S3 bucket to trigger lambda function when a json file is created"
-  default = "s3-trigger-lambda-function"
-}
-
-variable "s3_bucket_id" {
-  type        = string
-  description = "S3 bucket id to trigger lambda function when a json file is created"
+  default     = "s3-trigger-lambda-function"
 }
 
 variable "lambda_source_dir" {
   description = "Source directory for Lambda function code"
   type        = string
-  default     = "../../src"
+  default     = "../src"
 }
 
 variable "lambda_output_path" {
   description = "Output path for the Lambda function zip file"
   type        = string
-  default     = "../../lambda_function.zip"
+  default     = "../src/lambda_function.zip"
 }
 
