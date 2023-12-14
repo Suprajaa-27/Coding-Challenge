@@ -25,6 +25,7 @@ variable "role_arn" {
 
 variable "filename" {
   description = "The path to the Lambda function deployment package (ZIP file)."
+  default     = "lambda_function.zip"
 }
 
 variable "trigger_events" {
@@ -63,6 +64,6 @@ variable "lambda_source_dir" {
 variable "lambda_output_path" {
   description = "Output path for the Lambda function zip file"
   type        = string
-  default     = "../../src/lambda_function.zip"
+  default     = "../../lambda_function.zip"
 }
 
