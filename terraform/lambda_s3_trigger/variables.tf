@@ -58,7 +58,7 @@ variable "s3_bucket_id" {
 variable "lambda_source_dir" {
   description = "Source directory for Lambda function code"
   type        = string
-  default     = "../../src"
+  default     = "./src"
 }
 
 variable "lambda_output_path" {
