@@ -48,6 +48,7 @@ variable "filter_suffix" {
 variable "bucket_name" {
   type        = string
   description = "S3 bucket to trigger lambda function when a json file is created"
+  default = "s3-trigger-lambda-function"
 }
 
 variable "s3_bucket_id" {
