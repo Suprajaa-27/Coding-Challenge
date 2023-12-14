@@ -59,6 +59,6 @@ variable "lambda_source_dir" {
 variable "lambda_output_path" {
   description = "Output path for the Lambda function zip file"
   type        = string
-  default     = "../lambda_function.zip"
+  default     = "../src/lambda_function.zip"
 }
 

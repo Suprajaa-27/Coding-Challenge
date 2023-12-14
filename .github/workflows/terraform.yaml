@@ -56,6 +56,7 @@ jobs:
 
     - name: Terraform Destroy
       working-directory: ./terraform
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: terraform destroy
 
   
