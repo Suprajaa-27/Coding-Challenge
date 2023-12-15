@@ -5,7 +5,7 @@ resource "aws_lambda_function" "s3_trigger_lambda" {
   handler       = var.handler
   runtime       = var.runtime
   role          = aws_iam_role.aws_lambda_role.arn
-  filename      = "${path.module}/${var.filename}"
+  filename      = var.filename
 }
 
 #Resource to configure Lambda as an event trigger for S3 bucket.
@@ -23,7 +23,7 @@ resource "aws_s3_bucket_notification" "s3_event_trigger" {
 # To Package lambda function code
 data "archive_file" "zip_python_code" {
   type        = "zip"
-  source_dir  = "${path.module}/${var.lambda_source_dir}"
-  output_path = "${path.module}/${var.lambda_output_path}"
+ source_dir  = "${path.module}/src/"
+ output_path = "${path.module}/src/lambda_function.zip"
 }
 

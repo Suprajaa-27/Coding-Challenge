@@ -50,15 +50,15 @@ variable "bucket_name" {
   default     = "s3-trigger-lambda-function-jhsdbff"
 }
 
-variable "lambda_source_dir" {
-  description = "Source directory for Lambda function code"
-  type        = string
-  default     = "../src"
-}
+# variable "lambda_source_dir" {
+#   description = "Source directory for Lambda function code"
+#   type        = string
+#   # default     = "../src"
+# }
 
-variable "lambda_output_path" {
-  description = "Output path for the Lambda function zip file"
-  type        = string
-  default     = "../lambda_function.zip"
-}
+# variable "lambda_output_path" {
+#   description = "Output path for the Lambda function zip file"
+#   type        = string
+#   # default     = "../lambda_function.zip"
+# }
 
