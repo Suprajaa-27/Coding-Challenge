@@ -54,9 +54,4 @@ jobs:
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       run: terraform apply -auto-approve
 
-    - name: Deploy to S3
-      run: |
-        # Upload your files to S3 here
-        aws s3 cp  src/product.json s3://s3-trigger-lambda-function-jhsdbff
-
   

@@ -22,10 +22,10 @@ variable "runtime" {
   default     = "python3.11"
 }
 
-# variable "filename" {
-#   description = "The path to the Lambda function deployment package (ZIP file)."
-#   default     = "lambda_function.zip"
-# }
+variable "filename" {
+  description = "The path to the Lambda function deployment package (ZIP file)."
+  default     = "lambda_function.zip"
+}
 
 variable "trigger_events" {
   description = "List of S3 trigger events."
