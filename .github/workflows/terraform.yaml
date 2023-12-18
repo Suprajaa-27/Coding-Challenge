@@ -37,6 +37,11 @@ jobs:
       working-directory: ./terraform
       run: terraform init
 
+    - name: Terraform Destroy
+      working-directory: ./terraform
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      run: terraform destroy
+
     # - name: Terraform Format
     #   working-directory: ./terraform
     #   run: terraform fmt
