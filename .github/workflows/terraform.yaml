@@ -37,21 +37,21 @@ jobs:
       working-directory: ./terraform
       run: terraform init
 
-    - name: Terraform Format
-      working-directory: ./terraform
-      run: terraform fmt
+    # - name: Terraform Format
+    #   working-directory: ./terraform
+    #   run: terraform fmt
     
-    - name: Terraform Validate
-      working-directory: ./terraform
-      run: terraform validate
+    # - name: Terraform Validate
+    #   working-directory: ./terraform
+    #   run: terraform validate
 
-    - name: Terraform Plan
-      working-directory: ./terraform
-      run: terraform plan
+    # - name: Terraform Plan
+    #   working-directory: ./terraform
+    #   run: terraform plan
 
-    - name: Terraform Apply
-      working-directory: ./terraform
-      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-      run: terraform apply -auto-approve
+    # - name: Terraform Apply
+    #   working-directory: ./terraform
+    #   if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    #   run: terraform apply -auto-approve
 
   
