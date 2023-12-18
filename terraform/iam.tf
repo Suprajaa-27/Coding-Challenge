@@ -67,7 +67,8 @@ resource "aws_iam_policy" "s3_access_policy" {
         "s3:PutObject"
       ],
       "Resource": [
-        "${aws_s3_bucket.s3_bucket.arn}"
+        "${aws_s3_bucket.s3_bucket.arn}",
+        "${aws_s3_bucket.s3_bucket.arn}/*"
       ]
     }
   ]
