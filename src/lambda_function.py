@@ -1,40 +1,65 @@
 import json
 import boto3
-import logging
 
-# Configure logging
-logger = logging.getLogger()
-logger.setLevel(logging.INFO)
+def is_valid_json(data):
+    try:
+        json.loads(data)
+        return True
+    except ValueError:
+        return False
 
-# Initialize S3 client
-s3_client = boto3.client('s3')
+def calculate_total_value(data):
+    total_value = 0
+    for product in data['products']:
+        try:
+            price = float(product['price'])
+            quantity = int(product['quantity'])
+            product_total = price * quantity
+            total_value += product_total
+        except (ValueError, KeyError):
+            return None  # Invalid data, return None to indicate an error
+    return total_value
 
 def lambda_handler(event, context):
+    # S3 bucket and object details
+    bucket_name = 's3-bucket-to-trigger-lambda-function'
+    object_key = 'product.json'  # Replace with the correct object key
+
+    # Initialize S3 client
+    s3 = boto3.client('s3')
+
     try:
-        # Extract the bucket name and object key from the S3 event
-        bucket_name = event['Records'][0]['s3']['bucket']['name']
-        object_key = event['Records'][0]['s3']['object']['key']
+        # Retrieve the uploaded JSON file
+        response = s3.get_object(Bucket=bucket_name, Key=object_key)
+        json_data = response['Body'].read().decode('utf-8')
 
-        # Download the JSON file from S3
-        response = s3_client.get_object(Bucket=bucket_name, Key=object_key)
-        json_content = response['Body'].read().decode('utf-8')
+        # Check if the content is valid JSON
+        if is_valid_json(json_data):
+            # Parse the JSON data
+            parsed_data = json.loads(json_data)
+            
+            # Calculate the total value
+            total_value = calculate_total_value(parsed_data)
+            
+            if total_value is not None:
+                return {
+                    'statusCode': 200,
+                    'body': json.dumps({'total_value': total_value})
+                }
+            else:
+                return {
+                    'statusCode': 400,
+                    'body': json.dumps('Invalid data format in the uploaded JSON file')
+                }
+        else:
+            # Invalid JSON content
+            return {
+                'statusCode': 400,
+                'body': json.dumps('Invalid JSON content in the uploaded file')
+            }
 
-        # Parse the JSON content
-        json_data = json.loads(json_content)
-
-        # Process the JSON data (e.g., calculate the sum of numbers)
-        result = sum(json_data.get('numbers', []))
-
-        # Log the result to CloudWatch
-        logger.info(f'Sum of numbers: {result}')
-
-        return {
-            'statusCode': 200,
-            'body': json.dumps({'message': f'Sum of numbers: {result}'})
-        }
     except Exception as e:
-        logger.error(f'Error: {str(e)}')
         return {
             'statusCode': 500,
-            'body': json.dumps({'error': 'Internal Server Error'})
+            'body': json.dumps(f'Error: {str(e)}')
         }
