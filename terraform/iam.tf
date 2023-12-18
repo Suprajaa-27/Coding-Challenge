@@ -20,7 +20,6 @@ resource "aws_iam_role" "aws_lambda_role" {
 resource "aws_iam_policy" "cloud_watch_iam_policy" {
 
   name         = "aws_iam_policy_for_cloud_watch"
-  path         = "/"
   description  = "AWS IAM Policy for cloud watch"
   policy = <<EOF
 {
@@ -32,7 +31,7 @@ resource "aws_iam_policy" "cloud_watch_iam_policy" {
         "logs:CreateLogStream",
         "logs:PutLogEvents"
       ],
-      "Resource": "arn:aws:logs:*:*:*",
+      "Resource": "${aws_cloudwatch_log_group.app_log_group.arn}",
       "Effect": "Allow"
     }
   ]
@@ -58,16 +57,13 @@ resource "aws_iam_policy" "s3_access_policy" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Effect": "Allow",
       "Action": [
         "s3:GetObject",
         "s3:ListBucket",
         "s3:PutObject"
       ],
-      "Resource": [
-        "${aws_s3_bucket.s3_bucket.arn}",
-        "${aws_s3_bucket.s3_bucket.arn}/*"
-      ]
+      "Resource": "${aws_s3_bucket.s3_bucket.arn}",
+      "Effect": "Allow"
     }
   ]
 }
