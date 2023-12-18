@@ -6,6 +6,10 @@ resource "aws_lambda_function" "s3_trigger_lambda" {
   runtime       = var.runtime
   role          = aws_iam_role.aws_lambda_role.arn
   filename      = "${path.module}/lambda_function.zip"
+  depends_on = [
+    aws_iam_role_policy_attachment.attach_cloud_watch_policy_to_lambda_role,
+    aws_cloudwatch_log_group.app_log_group,
+  ]
 }
 
 #Resource to configure Lambda as an event trigger for S3 bucket.
