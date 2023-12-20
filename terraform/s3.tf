@@ -26,24 +26,24 @@ resource "aws_s3_bucket_lifecycle_configuration" "bucket-config" {
   }
 }
 
-resource "aws_s3_bucket_versioning" "object-versioning" {
+# resource "aws_s3_bucket_versioning" "object-versioning" {
 
-  bucket = aws_s3_bucket.s3_bucket.id
-  versioning_configuration {
-    status = "Enabled"
-  }
-}
-resource "aws_s3_bucket_object_lock_configuration" "object-lock" {
+#   bucket = aws_s3_bucket.s3_bucket.id
+#   versioning_configuration {
+#     status = "Enabled"
+#   }
+# }
+# resource "aws_s3_bucket_object_lock_configuration" "object-lock" {
 
-  bucket              = aws_s3_bucket.s3_bucket.id
-  object_lock_enabled = "Enabled"
+#   bucket              = aws_s3_bucket.s3_bucket.id
+#   object_lock_enabled = "Enabled"
 
-  rule {
-    default_retention {
-      mode = "COMPLIANCE"
-      days = 1
-    }
-  }
+#   rule {
+#     default_retention {
+#       mode = "COMPLIANCE"
+#       days = 1
+#     }
+#   }
 
-  depends_on = [aws_s3_bucket_versioning.object-versioning]
-}
+#   depends_on = [aws_s3_bucket_versioning.object-versioning]
+# }
