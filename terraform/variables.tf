@@ -53,12 +53,12 @@ variable "bucket_name" {
 # variable "lambda_source_dir" {
 #   description = "Source directory for Lambda function code"
 #   type        = string
-#   # default     = "../src"
+#   default     = "../src"
 # }
 
 # variable "lambda_output_path" {
 #   description = "Output path for the Lambda function zip file"
 #   type        = string
-#   # default     = "../lambda_function.zip"
+#   default     = "lambda_function.zip"
 # }
 
