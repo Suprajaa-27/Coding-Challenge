@@ -1,5 +1,5 @@
 # Define an IAM role for the Lambda function
-resource "aws_iam_role" "aws_lambda_role" {
+resource "aws_iam_role" "aws_lambda_iam_role" {
   name = "aws-lambda-role"
 
   assume_role_policy = jsonencode({
@@ -32,7 +32,7 @@ resource "aws_iam_policy" "cloud_watch_iam_policy" {
         "logs:CreateLogStream",
         "logs:PutLogEvents"
       ],
-      "Resource": "${aws_cloudwatch_log_group.app_log_group.arn}",
+      "Resource": "${aws_cloudwatch_log_group.app_log.arn}",
       "Effect": "Allow"
     }
   ]
@@ -43,7 +43,7 @@ EOF
 # Policy Attachment to the role.
 
 resource "aws_iam_role_policy_attachment" "attach_cloud_watch_policy_to_lambda_role" {
-  role       = aws_iam_role.aws_lambda_role.name
+  role       = aws_iam_role.aws_lambda_iam_role.name
   policy_arn = aws_iam_policy.cloud_watch_iam_policy.arn
 }
 
@@ -75,7 +75,7 @@ EOF
 
 # S3 Policy attachment to Lambda role.
 resource "aws_iam_role_policy_attachment" "lambda_s3_policy_attachment" {
-  role       = aws_iam_role.aws_lambda_role.name
+  role       = aws_iam_role.aws_lambda_iam_role.name
   policy_arn = aws_iam_policy.s3_access_policy.arn
 }
 
