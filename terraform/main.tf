@@ -6,17 +6,14 @@ resource "aws_lambda_function" "s3_trigger_lambda_function" {
   runtime       = var.runtime
   role          = aws_iam_role.aws_lambda_role.arn
   filename      = "${path.module}/lambda_function.zip"
-  tracing_config {
-    mode = "Active"
-  }
-
-  # Attach the custom log group ARN
   environment {
     variables = {
-      CW_LOG_GROUP = aws_cloudwatch_log_group.app_log_group.arn
+      LOG_GROUP_NAME = aws_cloudwatch_log_group.app_log_group.name
     }
   }
 }
+
+
 #Resource to configure Lambda as an event trigger for S3 bucket.
 resource "aws_s3_bucket_notification" "bucket_notification" {
   bucket = aws_s3_bucket.s3_bucket.id
