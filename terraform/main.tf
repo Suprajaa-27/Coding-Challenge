@@ -4,11 +4,12 @@ resource "aws_lambda_function" "s3_trigger_lambda_function" {
   function_name = var.lambda_function_name
   handler       = var.handler
   runtime       = var.runtime
-  role          = aws_iam_role.aws_lambda_role.arn
+  role          = aws_iam_role.aws_lambda_iam_role.arn
   filename      = "${path.module}/lambda_function.zip"
+  depends_on    = [aws_cloudwatch_log_group.app_log]
   environment {
     variables = {
-      LOG_GROUP_NAME = aws_cloudwatch_log_group.app_log_group.name
+      LOG_GROUP_NAME = aws_cloudwatch_log_group.app_log.name
     }
   }
 }
