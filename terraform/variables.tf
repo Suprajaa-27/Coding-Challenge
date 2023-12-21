@@ -22,11 +22,6 @@ variable "runtime" {
   default     = "python3.11"
 }
 
-# variable "filename" {
-#   description = "The path to the Lambda function deployment package (ZIP file)."
-#   default     = "lambda_function.zip"
-# }
-
 variable "trigger_events" {
   description = "List of S3 trigger events."
   default     = ["s3:ObjectCreated:*"]
@@ -49,16 +44,3 @@ variable "bucket_name" {
   description = "S3 bucket to trigger lambda function when a json file is created"
   default     = "s3-trigger-lambda-function-test12345"
 }
-
-# variable "lambda_source_dir" {
-#   description = "Source directory for Lambda function code"
-#   type        = string
-#   default     = "../src"
-# }
-
-# variable "lambda_output_path" {
-#   description = "Output path for the Lambda function zip file"
-#   type        = string
-#   default     = "lambda_function.zip"
-# }
-

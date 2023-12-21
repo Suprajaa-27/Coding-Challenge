@@ -27,12 +27,12 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
     filter_prefix       = var.filter_prefix
     filter_suffix       = var.filter_suffix
   }
-   depends_on = [aws_lambda_permission.s3_trigger_permission]
+  depends_on = [aws_lambda_permission.s3_trigger_permission]
 }
 
 # To Package lambda function code
 data "archive_file" "zip_python_code" {
   type        = "zip"
-  source_dir = "${path.module}/../src"
+  source_dir  = "${path.module}/../src"
   output_path = "${path.module}/lambda_function.zip"
 }
