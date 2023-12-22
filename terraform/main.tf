@@ -6,9 +6,12 @@ resource "aws_lambda_function" "s3_trigger_lambda_function" {
   runtime       = var.runtime
   role          = aws_iam_role.aws_lambda_iam_role.arn
   filename      = "${path.module}/lambda_function.zip"
-  depends_on    = [aws_cloudwatch_log_group.app_log]
+  depends_on    = [
+    aws_cloudwatch_log_group.app_log,
+    aws_iam_role_policy_attachment.attach_cloud_watch_policy_to_lambda_role
+  ]
   environment {
-    variables = {
+    variables  = {
       LOG_GROUP_NAME = aws_cloudwatch_log_group.app_log.name
     }
   }
@@ -25,7 +28,7 @@ resource "aws_s3_bucket_notification" "bucket_notification" {
     filter_prefix       = var.filter_prefix
     filter_suffix       = var.filter_suffix
   }
-  depends_on = [aws_lambda_permission.s3_trigger_permission]
+  depends_on            = [aws_lambda_permission.s3_trigger_permission]
 }
 
 # To Package lambda function code

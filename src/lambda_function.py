@@ -4,7 +4,6 @@ import boto3
 
 def lambda_handler(event, context):
     try:
-        # Extract bucket name and object key from the S3 event
         bucket_name = event["Records"][0]["s3"]["bucket"]["name"]
         file_name = event["Records"][0]["s3"]["object"]["key"]
 
@@ -24,7 +23,7 @@ def lambda_handler(event, context):
                 salary is None
                 or not isinstance(salary, (int, float))
                 or department is None
-                or not isinstance(department,(str))
+                or not isinstance(department, (str))
             ):
                 raise ValueError("Invalid/missing data for department or salary..")
 
@@ -34,8 +33,11 @@ def lambda_handler(event, context):
                 department_totals[department] += salary
 
         # Sort the department totals by total salary
-        sorted_departments = dict(sorted(department_totals.items(), key=lambda x: x[1], reverse=True))
+        sorted_departments = dict(
+            sorted(department_totals.items(), key=lambda x: x[1], reverse=True)
+        )
 
+        print(f"Department-wise salary totals: {sorted_departments}")
         return {"statusCode": 200, "body": json.dumps(sorted_departments)}
 
     except ValueError as ve:

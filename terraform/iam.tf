@@ -51,9 +51,7 @@ resource "aws_iam_role_policy_attachment" "attach_cloud_watch_policy_to_lambda_r
 resource "aws_iam_policy" "s3_access_policy" {
   name        = "s3_access_policy"
   description = "Policy for Lambda function to access S3"
-
-  # Define the policy document with appropriate permissions for S3 access
-  policy = <<EOF
+  policy      = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
