@@ -6,7 +6,7 @@ variable "region" {
 
 variable "lambda_function_name" {
   type        = string
-  description = "The name of the Lambda Function."
+  description = "The name of  Lambda Function."
   default     = "s3-trigger-lambda"
 }
 
